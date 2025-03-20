@@ -14,7 +14,10 @@ import java.util.Scanner;
  */
 public class Main {
 
-    
+    //NOS DA PEDRO OTRA SOLUCIÓN EN TEAMS
+    //LO PONDRÉ QUIZÁ EN OTRO MAIN EN ESTE PAQUETE
+    //EN ESE MAIN UTILIZARÁ UNA CLASE VALIDACIONES (LLAMADA TECLADO)
+    //Es una mejor resolución porque la de aquí no cumple todo lo que se nos pide
     
     public static void main(String[] args) {
         //1.- Calcular la suma y la media aritmética de los valores contenidos 
