@@ -6,7 +6,9 @@ package Hoja_01Colecc_EJ_02;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 /**
  *
@@ -28,9 +30,17 @@ public class Persona implements Comparable<Persona> {
     //Desde la clase ValidaDatos
     public Persona(){
         nombre = ValidaDatos.validarNombre();
-//        fechaNacimiento = ValidaDatos.validarFecha(); Pendiente
+        fechaNacimiento = ValidaDatos.validarFecha(); 
         dni = ValidaDatos.validarDni();        
     }
+    
+    //Constructor sólo con dni para la búsqueda por dni en clase Asociacion
+
+    public Persona(String dni) {
+        this.dni = dni;
+    }
+    
+    
     
     //get & set: a medida que los necesite
     //Pedro pregunta si serán siempre necesarios
@@ -41,9 +51,26 @@ public class Persona implements Comparable<Persona> {
     
 
     @Override
-    public int compareTo(Persona o) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public int compareTo(Persona persona) {
+        return dni.compareTo(persona.dni);
+        //se podría poner return this.dni.compareTo(persona.dni); pero no hace falta
     }
+    
+    @Override
+    public boolean equals(Object o){
+        return dni.equals(((Persona)o).dni);
+    }
+    
+    //El hash se hace automático con insertcode una vez hecho el equals
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.dni);
+        return hash;
+    }
+    
+    
     
     //Calcular la edad de una persona
     //Esta es la más legible
@@ -63,7 +90,12 @@ public class Persona implements Comparable<Persona> {
         Period periodo = Period.between(fechaNacimiento, hoy);
         return edad = periodo.getYears();
     }
-    
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");        
+        return "Persona{" + "nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento.format(formato) + ", dni=" + dni + '}';
+    }    
     
     
     

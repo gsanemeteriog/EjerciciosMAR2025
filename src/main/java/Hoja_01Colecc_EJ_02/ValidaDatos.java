@@ -4,6 +4,9 @@
  */
 package Hoja_01Colecc_EJ_02;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -25,6 +28,7 @@ public class ValidaDatos {
        
        do{
            System.out.println("Introduce el nombre del socio:");
+           nombre = teclado.nextLine();
            if (nombre.length() < 3) {
                System.out.println("El nombre no es valido. Minimo 3 caracteres.");
            }else{
@@ -63,6 +67,28 @@ public class ValidaDatos {
     
     //Validar fecha que sea válida
     
+    public static LocalDate validarFecha(){
+        Scanner teclado = new Scanner(System.in);
+        LocalDate fecha = LocalDate.now();
+        //Se podría hacer los cálculos sin la fecha de hoy,pero lo añade por usarlo de manera didáctica
+        boolean seguir = true;
+        
+        while(seguir){
+            try{
+                System.out.println("Introduce la fecha de nacimiento del socio en formato dd-MM-yyyy");
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                fecha = LocalDate.parse(teclado.next(), formato);
+                seguir = false;
+            }catch(DateTimeParseException e1){
+                System.out.println("Fecha no valida.");
+            }catch(Exception e2){
+                System.out.println("Error: " + e2.toString());                
+            }
+            
+        }
+        return fecha;        
+    }
+    
     //Validar que la letra del DNI sea válida
     //letraDni = dni % 23;
     //la posición en la cadena TRWAGMYFPDXBNJZSQVHLCKE
@@ -90,7 +116,7 @@ public class ValidaDatos {
         boolean valido = true; //normalmente inicializa a false, ahora por variar
         
         try{
-            if (dni.length() != 9 || !(Character.isLetter(dni.charAt(8))) || soloNumeros(dni.substring(0,8))){
+            if (dni.length() != 9 || !(Character.isLetter(dni.charAt(8))) || !soloNumeros(dni.substring(0,8))){
                 System.out.println("El DNI debe ser 8 numeros y una letra.");
                 valido = false;
             }else{
