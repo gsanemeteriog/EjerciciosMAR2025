@@ -5,6 +5,7 @@
 package Hoja_02Colecc_EJ_04;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -24,19 +25,35 @@ public class Cliente {
         //YA QUE VAMOS A HACER UNA COLA
     }
     
-    //MÉTODOS
-    
-    //añadir un cliente 
+    //Getter y setter, Pedro elige sólo de las fechas
 
-    //atender a un cliente 
+    public LocalDateTime getFechaEntrada() {
+        return fechaEntrada;
+    }
 
-    //obtener el tiempo medio de espera de los clientes que aún no han sido atendidos 
+    public void setFechaEntrada(LocalDateTime fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
 
-    //obtener el tiempo medio de espera de los clientes ya atendidos 
+    public LocalDateTime getFechaAtencion() {
+        return fechaAtencion;
+    }
 
-    //mostrar los clientes indicando los que hay en la cola de espera y los que están atendidos 
-
-
-
-    
+    public void setFechaAtencion(LocalDateTime fechaAtencion) {
+        this.fechaAtencion = fechaAtencion;
+    }
+        
+    @Override
+    public String toString(){
+        String fechaAtencionCadena = "";
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss");
+        if (fechaAtencion != null) { //Porque puede que aún no le hayan atendido
+            fechaAtencionCadena = " , Fecha de atencion: " + fechaAtencion.format(formato);
+        }
+        
+        
+        return "{" + " Nombre: " + nombre + ", Movil: " + movil + ", Fecha de Entrada: " 
+                + fechaEntrada.format(formato) + fechaAtencionCadena + "}";
+    }
+        
 }
