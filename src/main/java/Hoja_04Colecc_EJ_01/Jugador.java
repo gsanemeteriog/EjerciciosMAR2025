@@ -23,8 +23,7 @@ public class Jugador implements Comparable<Jugador> {
         this.estatura = estatura;
     }
     
-    //Como va a ordenar por altura, necesitamos el compareTo
-    //PENDIENTE DE MODIFICAR
+    //Como va a ordenar por altura, necesitamos el compareTo    
     @Override
     public int compareTo(Jugador j) {
        return Double.compare(estatura, j.estatura);

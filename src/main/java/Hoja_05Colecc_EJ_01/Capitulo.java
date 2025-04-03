@@ -50,7 +50,7 @@ public class Capitulo {
     
     @Override
     public String toString() {        
-        return String.format("Jugador: \nTemporada: %d \nCapitulo: %d \nDescripcion: %s",
+        return String.format("Datos: \nTemporada: %d \nCapitulo: %d \nDescripcion: %s",
                 numTemporada, numCapitulo, descripcion);
     }
     
